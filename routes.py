@@ -6,13 +6,9 @@ import json
 
 api_bp = Blueprint('api', __name__)
 
-# #deepseek
-# MODEL_API_URL = 'https://api.deepseek.com/v1/chat/completions'
-# MODEL_API_KEY = 'sk-d1773fdcaf63497f8b7590fc3fe488d0'
-
-#智谱清言
-MODEL_API_URL = 'https://open.bigmodel.cn/api/paas/v4/chat/completions'
-MODEL_API_KEY = '6b644a64dca94d259c56c278bb92171d.4U6c1H8EDIZrij7w'
+#你使用的大模型的api_url和api_key
+MODEL_API_URL = 'YOUR_MODEL_API_URL'
+MODEL_API_KEY = 'YOUR_MODEL_API_KEY'
 
 def clean_markdown(text):
     # 只处理加粗和换行，保留```代码块```
@@ -41,7 +37,7 @@ def chat():
         # 添加当前用户消息
         messages.append({"role": "user", "content": user_input})
 
-        # 调用模型API（按DeepSeek API文档构造请求体）
+        # 调用模型API,API文档构造请求体
         headers = {
             'Authorization': f'Bearer {MODEL_API_KEY}',
             'Content-Type': 'application/json'
@@ -49,9 +45,8 @@ def chat():
         response = requests.post(
             MODEL_API_URL,
             json={
-                # "messages": [{"role": "user", "content": user_input}],  # 关键修改点
                 "messages": messages,
-                "model": "glm-4-plus",  # 指定模型名称,"model": "deepseek-chat"
+                "model": "your_model_name",  # 指定模型名称  例："model": "deepseek-chat"
                 "temperature": 0.7, # 可选参数
             },
             headers=headers,
@@ -59,7 +54,7 @@ def chat():
         )
         response.raise_for_status()  # 自动抛出HTTP错误
 
-        # 解析响应（按DeepSeek响应格式调整）
+        # 解析响应
         response_data = response.json()
         assistant_response = response_data['choices'][0]['message']['content']  # 关键解析路径
 
@@ -81,7 +76,6 @@ def chat():
         return jsonify({
             'user_input': user_input,
             'assistant_response': assistant_response
-            # 'assistant_response': cleaned_response  # 前端显示整理后的字符串
         })
     except Exception as e:
         return jsonify({'error': str(e)}), 500
