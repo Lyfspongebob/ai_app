@@ -1,12 +1,13 @@
+#该文件是测试数据库连接的文件
 import pymysql
 
 try:
     connection = pymysql.connect(
-        host='localhost',
-        user='root',
-        password='Lyf2005@',
+        host='your_sql_host',
+        user='user_name',
+        password='password',
         port=3306,
-        database='ai_assistant'
+        database='db_name'
     )
     print("Connection successful!")
     connection.close()
