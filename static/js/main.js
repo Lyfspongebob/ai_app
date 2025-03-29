@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendButton = document.getElementById('send-button');
     const chatHistory = document.getElementById('chat-history');
 
-
     // 按下发送键后，重置输入框状态的函数
     const resetInput = () => {
         userInput.value = '正在思考...'; // 清空内容
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         userInput.style.height = 'auto'; // 重置高度
         userInput.rows = 0; // 重置行数
     };
-
 
     sendButton.addEventListener('click', () => {
         const inputText = userInput.value.trim();
@@ -58,8 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             document.querySelectorAll('pre code').forEach(hljs.highlightElement);
         }, 50);
-
-//        userInput.value = '';
         resetInput2();
     }
 })
