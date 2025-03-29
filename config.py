@@ -2,8 +2,8 @@ import os
 from datetime import timedelta
 
 class Config:
-    SECRET_KEY = os.environ.get('Lyf2005@')
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Lyf2005@localhost:3306/ai_assistant'
+    SECRET_KEY = os.environ.get('YOUR_SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://your_username:your_password@your_sql_url/your_database_name'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # 会话配置
