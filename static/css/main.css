@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    min-height: 100vh; /* 至少填满视口高度 */
+    max-width: 1200px;
+    margin: 0px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+#chat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+}
+
+#chat-history {
+    width:100%;
+    margin-bottom: 20px;
+    height: 350px;
+    /*overflow-y: scroll;  /*强制生成右侧滑动条*/
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#user-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#send-button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+    vertical-align: top;
+}
+
+#send-button:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* static/css/main.css */
+.assistant-message {
+    white-space: pre-wrap;
+    line-height: 1.6;
+    font-family: Arial, sans-serif;
+}
+
+.assistant-message strong {
+    font-weight: bold;
+    color: #0066cc;
+}
+
+.assistant-message code {
+    background: #f0f0f0;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}
+
+.assistant-message br {
+    display: block;
+    content: "";
+    margin: 8px 0;
+}
+
+
+
+
+.assistant-message pre {
+    background: #f8f8f8 !important;
+    border-radius: 4px;
+    padding: 12px;
+    overflow-x: auto;
+    border-left: 3px solid #007BFF;
+}
+
+
+.assistant-message pre {
+    background: #f6f8fa !important; /* GitHub风格代码块背景 */
+    padding: 16px;
+    border-radius: 6px;
+    overflow: auto;
+    border-left: 4px solid #007BFF;
+}
+
+.assistant-message code.hljs {
+    background: transparent !important; /* 避免双重背景 */
+    padding: 0;
+}
+
+.assistant-message pre code {
+    background: transparent !important;
+    padding: 0;
+}
