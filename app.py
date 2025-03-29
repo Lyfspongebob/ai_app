@@ -17,8 +17,6 @@ def create_tables():
     with app.app_context():
         db.create_all()
 
-# app.register_blueprint(api_bp, url_prefix='/api')
-
 @app.route('/')
 def index():
     return render_template('index.html')
