@@ -112,7 +112,6 @@ code {
   margin-bottom: 6px;
 }
 
-
 /* 固定输入区域 */
 .input-container {
   position: fixed;
@@ -127,7 +126,6 @@ code {
   box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
   border-top: 1px solid var(--border-color);
 }
-
 
 .input-wrapper {
   max-width: 800px;
