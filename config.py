@@ -3,7 +3,7 @@ from datetime import timedelta
 
 class Config:
     SECRET_KEY = os.environ.get('YOUR_SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://your_username:your_password@your_sql_url/your_database_name'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://your_username:your_password@your_sql_url:port/your_database_name'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # 会话配置
