@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         userInput.value = '正在思考...'; // 清空内容
         userInput.style.height = 'auto'; // 重置高度
         userInput.rows = 0; // 重置行数
+        userInput.disabled = true;//锁定输入框
     };
 
     //显示回复内容后，重置输入框状态函数
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         userInput.value = ''; // 清空内容
         userInput.style.height = 'auto'; // 重置高度
         userInput.rows = 0; // 重置行数
+        userInput.disabled = false;//解除锁定
     };
 
     sendButton.addEventListener('click', () => {
