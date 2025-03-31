@@ -4,7 +4,7 @@ db = SQLAlchemy()
 
 class Conversation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_input = db.Column(db.String(500), nullable=False)
+    user_input = db.Column(db.Text, nullable=False)
     assistant_response = db.Column(db.Text, nullable=False)
     timestamp = db.Column(db.DateTime, server_default=db.func.now())
 
