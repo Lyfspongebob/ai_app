@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputText = userInput.value.trim();
         if (inputText === '') {
             alert('请输入问题！');
+            resetInput2();
             return;
         }
 
