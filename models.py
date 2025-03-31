@@ -9,6 +9,6 @@ class Conversation(db.Model):
     timestamp = db.Column(db.DateTime, server_default=db.func.now())
 
     @classmethod
-    def get_recent_conversations(cls, limit=10):
+    def get_recent_conversations(cls, limit=30):
         """获取最近的对话记录"""
         return cls.query.order_by(cls.timestamp.desc()).limit(limit*2).all()  # 获取limit轮对话
