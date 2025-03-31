@@ -7,8 +7,8 @@ CREATE DATABASE ai_assistant;
 USE ai_assistant;
 CREATE TABLE conversations (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_input VARCHAR(500) NOT NULL,
-    assistant_response VARCHAR(1000) NOT NULL,
+    user_input LONGTEXT NOT NULL,
+    assistant_response LONGTEXT NOT NULL,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
