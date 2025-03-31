@@ -26,7 +26,7 @@ def chat():
             return jsonify({'error': 'No input'}), 400
 
         # 从数据库获取最近3轮对话作为上下文
-        recent_messages = Conversation.get_recent_conversations(limit=3)
+        recent_messages = Conversation.get_recent_conversations(limit=30)
 
         # 构建消息历史 (按时间升序排列)
         messages = []
