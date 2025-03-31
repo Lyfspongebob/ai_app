@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 显示用户输入
-        chatHistory.innerHTML += `<div class="user-message">${inputText}</div>`;
+        const formattedInputText = inputText.replace(/\n/g, '<br>');  // 显示换行
+        chatHistory.innerHTML += `<div class="user-message">${formattedInputText}</div>`;
 
         // 发送请求到后端
         fetch('/api/chat', {
