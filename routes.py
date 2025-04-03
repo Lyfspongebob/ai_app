@@ -3,12 +3,9 @@ from models import db, Conversation
 import requests
 import re
 import json
+from config import Config
 
 api_bp = Blueprint('api', __name__)
-
-#你使用的大模型的api_url和api_key
-MODEL_API_URL = 'YOUR_MODEL_API_URL'
-MODEL_API_KEY = 'YOUR_MODEL_API_KEY'
 
 def clean_markdown(text):
     # 只处理加粗和换行，保留```代码块```
@@ -25,7 +22,7 @@ def chat():
         if not user_input:
             return jsonify({'error': 'No input'}), 400
 
-        # 从数据库获取最近3轮对话作为上下文
+        # 从数据库获取最近30轮对话作为上下文
         recent_messages = Conversation.get_recent_conversations(limit=30)
 
         # 构建消息历史 (按时间升序排列)
@@ -37,24 +34,35 @@ def chat():
         # 添加当前用户消息
         messages.append({"role": "user", "content": user_input})
 
-        # 调用模型API,API文档构造请求体
+        # 调用模型API（按DeepSeek API文档构造请求体）
         headers = {
-            'Authorization': f'Bearer {MODEL_API_KEY}',
+            'Authorization': f'Bearer {Config.MODEL_API_KEY}',
             'Content-Type': 'application/json'
         }
+
+        data = {
+            "model": "glm-4-plus",
+            "messages": messages,
+            "tools": [
+                {
+                    "type": "retrieval",
+                    "retrieval": {
+                        "knowledge_id": Config.KNOWLEDGE_BASE_ID,
+                        "prompt_template": "请从文档:\n\"\"\"\n{{knowledge}}\n\"\"\"\n中回答:\n\"\"\"\n{{question}}\n\"\"\""
+                    }
+                }
+            ],
+            "temperature": 0.8
+        }
         response = requests.post(
-            MODEL_API_URL,
-            json={
-                "messages": messages,
-                "model": "your_model_name",  # 指定模型名称  例："model": "deepseek-chat"
-                "temperature": 0.7, # 可选参数
-            },
+            Config.MODEL_API_URL,
             headers=headers,
+            json=data,
             timeout=30
         )
         response.raise_for_status()  # 自动抛出HTTP错误
 
-        # 解析响应
+        # 解析响应（按DeepSeek响应格式调整）
         response_data = response.json()
         assistant_response = response_data['choices'][0]['message']['content']  # 关键解析路径
 
