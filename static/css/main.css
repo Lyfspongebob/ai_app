@@ -189,6 +189,7 @@ code {
 }
 
 /*增强搜索按钮*/
+/*静默状态*/
 #enhanced-search-button {
     margin-top:38px;
     margin-right:10px;
@@ -199,6 +200,7 @@ code {
     border-radius: 10px;
 }
 
+/*激活状态*/
 #enhanced-search-button.active {
     margin-top:38px;
     margin-right:10px;
