@@ -18,6 +18,7 @@ def chat():
     try:
         data = request.get_json(force=True)
         user_input = data.get('user_input')
+        enhanced_search = data.get('enhanced_search',False)
 
         if not user_input:
             return jsonify({'error': 'No input'}), 400
@@ -43,17 +44,20 @@ def chat():
         data = {
             "model": "glm-4-plus",
             "messages": messages,
-            "tools": [
-                {
-                    "type": "retrieval",
-                    "retrieval": {
-                        "knowledge_id": Config.KNOWLEDGE_BASE_ID,
-                        "prompt_template": "请从文档:\n\"\"\"\n{{knowledge}}\n\"\"\"\n中回答:\n\"\"\"\n{{question}}\n\"\"\""
-                    }
-                }
-            ],
             "temperature": 0.8
         }
+
+        if enhanced_search:
+            data['tools'] = [
+                    {
+                        "type": "retrieval",
+                        "retrieval": {
+                            "knowledge_id": Config.KNOWLEDGE_BASE_ID,
+                            # "prompt_template": "请从文档:\n\"\"\"\n{{knowledge}}\n\"\"\"\n中回答:\n\"\"\"\n{{question}}\n\"\"\""
+                        }
+                    }
+                ]
+        
         response = requests.post(
             Config.MODEL_API_URL,
             headers=headers,
