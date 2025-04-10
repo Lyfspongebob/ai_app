@@ -188,6 +188,27 @@ code {
   height: 20px;
 }
 
+/*增强搜索按钮*/
+#enhanced-search-button {
+    margin-top:38px;
+    margin-right:10px;
+    margin-bottom:5px;
+    background-color: #f0f0f0;
+    color: #000000;
+    border: 0px solid #ecfffd;
+    border-radius: 10px;
+}
+
+#enhanced-search-button.active {
+    margin-top:38px;
+    margin-right:10px;
+    margin-bottom:5px;
+    background-color: #4d82f6;
+    color: white;
+    border: 0px solid #ecfffd;
+    border-radius: 10px;
+}
+
 /* 滚动条样式 */
 ::-webkit-scrollbar {
   width: 8px;
