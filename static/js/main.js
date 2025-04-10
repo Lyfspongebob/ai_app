@@ -2,6 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const userInput = document.getElementById('user-input');
     const sendButton = document.getElementById('send-button');
     const chatHistory = document.getElementById('chat-history');
+    const enhancedSearchButton = document.getElementById('enhanced-search-button');
+
+    let isEnhancedSearch = false; // 初始增强搜索按钮为false 静默状态，'let'声明为局部变量
+
+     // 
+    enhancedSearchButton.addEventListener('click', function () {
+            isEnhancedSearch = !isEnhancedSearch; // 每次点击都更改bool值
+            if (isEnhancedSearch) {
+                this.classList.add('active'); // 激活状态渲染
+            } else {
+                this.classList.remove('active'); // 静默状态渲染
+            }
+    });
 
     // 锁定发送按钮状态
     const setSendButtonState = (isDisabled) => {
@@ -48,7 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ user_input: inputText })
+            body: JSON.stringify({ 
+                user_input: inputText,
+                enhanced_search: isEnhancedSearch // 向后端传送增强搜索bool值
+            })
         })
         .then(response => response.json())
         .then(data => {
